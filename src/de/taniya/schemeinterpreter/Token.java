@@ -1,28 +1,33 @@
+package de.taniya.schemeinterpreter;
+
 public class Token {
     enum Tokentyp{
         number,
         character,
         bracketopen,
         bracketclose,
-        operator,
+        keyWord,
         gruppe,
+        keyWordLet,
+        variable,
     }
 
     Tokentyp tokentyp;
-    int num;
+    public datenTypen var;
+
     public Token(Tokentyp tokentyp){
         this.tokentyp = tokentyp;
     }
 
-    public Token(Tokentyp tokentyp, int num){
+    public Token(Tokentyp tokentyp, datenTypen var){
         this.tokentyp = tokentyp;
-        this.num = num;
+        this.var = var;
     }
 
     public String toString(){
 
         if (tokentyp==Tokentyp.number)
-            return tokentyp.name() + num;
+            return tokentyp.name() + var;
         else
             return tokentyp.name();
     }
