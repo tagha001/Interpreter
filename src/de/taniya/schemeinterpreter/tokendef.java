@@ -32,7 +32,7 @@ public class tokendef {
                 default:
                     if ('a' <= input.charAt(i) && input.charAt(i) <= 'z') {
                         if (input.substring(i).startsWith("let")) {
-                            typ = new Token(Token.Tokentyp.keyWordLet);
+                            typ = new Token(Token.Tokentyp.keyWord, new datenTypen("let"));
                             i += 2;
                         }
                         else if (input.substring(i).startsWith("define")){

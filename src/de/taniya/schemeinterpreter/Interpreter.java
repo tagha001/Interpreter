@@ -30,9 +30,9 @@ public class Interpreter {
 
     public static void main(String args[]){
         tokendef test = new tokendef();
-        //List list = test.load("(let ((a (+ 5 6))) (* a a))");
+        List list = test.load("(let ((a (+ 5 6))) (* a a))");
         //List list = test.load("(+ 5 6 (* 5 2))");
-        List list = test.load("(define (func x y) (* x y))");
+        // List list = test.load("(define (func x y) (* x y))");
         Knotten knotten = tokendef.gruppierung(list,0, list.size());
         //repl();
 
@@ -44,6 +44,7 @@ public class Interpreter {
         varStore.addVar("*", new datenTypen(new prozedurMal()));
         varStore.addVar("/", new datenTypen(new prozedurGeteilt()));
         varStore.addVar("define", new datenTypen(new prozedurDefine()));
+        varStore.addVar("let", new datenTypen(new prozedurLet()));
         System.out.println(Auswertung.auswertung(knotten, varStore));
 
     }

@@ -11,13 +11,6 @@ public class Auswertung {
         }
 
         switch (knotten.getKind().get(0).getToken().tokentyp){
-            case keyWordLet:
-                varStore store = new varStore(varStore);
-                for (Knotten temp : knotten.getKind().get(1).getKind()) {
-                    store.addVar(temp.getKind().get(0).getToken().var.getString(), auswertung(temp.getKind().get(1), varStore));
-                }
-                return auswertung(knotten.getKind().get(2), store);
-
             case keyWord:
                 datenTypen temp = varStore.findVar(knotten.getKind().get(0).getToken().var.getString());
                 if (temp != null){

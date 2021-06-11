@@ -8,7 +8,6 @@ public class Token {
         bracketclose,
         keyWord,
         gruppe,
-        keyWordLet,
         variable,
     }
 
