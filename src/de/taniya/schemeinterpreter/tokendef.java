@@ -63,6 +63,10 @@ public class tokendef {
                             typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("lambda"));
                             i += 5;
                         }
+                        else if (input.substring(i).startsWith("round")){
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("round"));
+                            i += 4;
+                        }
 
                         else {
                             String var = "";
@@ -74,11 +78,23 @@ public class tokendef {
                             typ = new Token(Token.Tokentyp.variable, new DatenTypen(var));
                         }
                     } else if ('0' <= input.charAt(i) && input.charAt(i) <= '9') {
-                        int num = 0;
+                        double num = 0;
                         while ('0' <= input.charAt(i) && input.charAt(i) <= '9') {
                             num *= 10;
                             num += input.charAt(i) - '0';
                             i++;
+                        }
+                        if (input.charAt(i) == '.'){
+                            i++;
+                            int j = 0;
+                            while ('0' <= input.charAt(i) && input.charAt(i) <= '9') {
+                                num *= 10;
+                                num += input.charAt(i) - '0';
+                                i++;
+                                j++;
+                            }
+                            num = num/(Math.pow(10, j));
+
                         }
                         ;
                         //Ende der String und an Bracketclose

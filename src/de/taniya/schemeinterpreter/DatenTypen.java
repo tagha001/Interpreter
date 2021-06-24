@@ -24,6 +24,7 @@ public class DatenTypen {
         this.prozedur = prozedur;
     }
 
+
     public DatenTypen() {
 
     }
