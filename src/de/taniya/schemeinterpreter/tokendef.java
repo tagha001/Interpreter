@@ -3,6 +3,7 @@ package de.taniya.schemeinterpreter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class tokendef {
 
     public static List<Token> load(String input) {
@@ -18,25 +19,48 @@ public class tokendef {
                     typ = new Token(Token.Tokentyp.bracketclose);
                     break;
                 case '+':
-                    typ = new Token(Token.Tokentyp.keyWord, new datenTypen("+"));
+                    typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("+"));
                     break;
                 case '-':
-                    typ = new Token(Token.Tokentyp.keyWord, new datenTypen("-"));
+                    typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("-"));
                     break;
                 case '*':
-                    typ = new Token(Token.Tokentyp.keyWord, new datenTypen("*"));
+                    typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("*"));
                     break;
                 case '/':
-                    typ = new Token(Token.Tokentyp.keyWord, new datenTypen("/"));
+                    typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("/"));
                     break;
+
+                case '"':
+                    int stringEnd = input.indexOf('"', i+1);
+                    String string = input.substring(i+1, stringEnd);
+                    typ = new Token(Token.Tokentyp.string, new DatenTypen(string));
+                    i = stringEnd;
+                    break;
+
+                case '#':
+                    if (input.charAt(i+1) == 't'){
+                        typ = new Token(Token.Tokentyp.bool, new DatenTypen(true));
+                    }else {
+                        typ = new Token(Token.Tokentyp.bool, new DatenTypen(false));
+                    }
+                    i++;
+                    break;
+
+
                 default:
                     if ('a' <= input.charAt(i) && input.charAt(i) <= 'z') {
                         if (input.substring(i).startsWith("let")) {
-                            typ = new Token(Token.Tokentyp.keyWord, new datenTypen("let"));
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("let"));
                             i += 2;
                         }
                         else if (input.substring(i).startsWith("define")){
-                            typ = new Token(Token.Tokentyp.keyWord, new datenTypen("define"));
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("define"));
+                            i += 5;
+                        }
+
+                        else if (input.substring(i).startsWith("lambda")){
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("lambda"));
                             i += 5;
                         }
 
@@ -47,7 +71,7 @@ public class tokendef {
                                 i++;
                             }
                             i--;
-                            typ = new Token(Token.Tokentyp.variable, new datenTypen(var));
+                            typ = new Token(Token.Tokentyp.variable, new DatenTypen(var));
                         }
                     } else if ('0' <= input.charAt(i) && input.charAt(i) <= '9') {
                         int num = 0;
@@ -60,7 +84,7 @@ public class tokendef {
                         //Ende der String und an Bracketclose
                         i--;
 
-                        typ = new Token(Token.Tokentyp.number, new datenTypen(num));
+                        typ = new Token(Token.Tokentyp.number, new DatenTypen(num));
 
                     }
             }
@@ -89,7 +113,14 @@ public class tokendef {
 
 
     public static Knotten gruppierung(List<Token> Tokens, int anfang, int ende) {
-        Knotten eltern = new Knotten(new Token(Token.Tokentyp.gruppe));
+        Knotten eltern;
+
+        if (anfang == 0){
+            eltern = new Knotten(new Token(Token.Tokentyp.root));
+        }
+        else {
+            eltern = new Knotten(new Token(Token.Tokentyp.gruppe));
+        }
         for (int i = anfang; i < ende; i++) {
             if (Tokens.get(i).tokentyp == Token.Tokentyp.bracketopen) {
                 int j = findeKlammer(Tokens, i);

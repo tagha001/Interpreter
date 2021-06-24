@@ -1,15 +1,14 @@
 package de.taniya.schemeinterpreter.prozedur;
 
-import de.taniya.schemeinterpreter.Knotten;
 import de.taniya.schemeinterpreter.DatenTypen;
+import de.taniya.schemeinterpreter.Knotten;
 import de.taniya.schemeinterpreter.VarStore;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class prozedurDefine extends Prozedur{
-
-    public prozedurDefine(VarStore varStore) {
+public class prozedurLambda extends Prozedur{
+    public prozedurLambda(VarStore varStore) {
         super(varStore);
     }
 
@@ -19,12 +18,8 @@ public class prozedurDefine extends Prozedur{
         for (int i=0; i< knotten.getKind().get(1).getKind().size(); i++){
             prozedurParam.add(knotten.getKind().get(1).getKind().get(i).getToken().var.getString());
         }
-        String prozedurName = prozedurParam.get(0);
-        prozedurParam.remove(0);
-
         schemeProzedur scheme = new schemeProzedur(prozedurParam, knotten.getKind().get(2), varStore);
-        varStore.addVar(prozedurName, new DatenTypen(scheme));
-        return new DatenTypen();
+        return new DatenTypen(scheme);
     }
 
     @Override

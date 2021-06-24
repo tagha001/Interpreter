@@ -3,22 +3,22 @@ package de.taniya.schemeinterpreter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class varStore {
-    private Map<String, datenTypen> varMap = new HashMap<>();
-    private varStore parent;
+public class VarStore {
+    private Map<String, DatenTypen> varMap = new HashMap<>();
+    private VarStore parent;
 
-    public varStore(){
+    public VarStore(){
 
     }
 
-    public varStore(varStore varStore){
+    public VarStore(VarStore varStore){
         parent = varStore;
     }
 
-    public void addVar(String name, datenTypen value){
+    public void addVar(String name, DatenTypen value){
         varMap.put(name, value);
     }
-    public datenTypen findVar(String name){
+    public DatenTypen findVar(String name){
         if(varMap.containsKey(name)){
             return varMap.get(name);
         }

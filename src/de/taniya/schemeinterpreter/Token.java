@@ -1,24 +1,26 @@
 package de.taniya.schemeinterpreter;
 
 public class Token {
-    enum Tokentyp{
+    public enum Tokentyp{
         number,
-        character,
         bracketopen,
         bracketclose,
         keyWord,
         gruppe,
         variable,
+        string,
+        bool,
+        root,
     }
 
     Tokentyp tokentyp;
-    public datenTypen var;
+    public DatenTypen var;
 
     public Token(Tokentyp tokentyp){
         this.tokentyp = tokentyp;
     }
 
-    public Token(Tokentyp tokentyp, datenTypen var){
+    public Token(Tokentyp tokentyp, DatenTypen var){
         this.tokentyp = tokentyp;
         this.var = var;
     }

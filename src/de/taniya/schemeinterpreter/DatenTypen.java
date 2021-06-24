@@ -2,29 +2,29 @@ package de.taniya.schemeinterpreter;
 
 import de.taniya.schemeinterpreter.prozedur.Prozedur;
 
-public class datenTypen {
+public class DatenTypen {
     private Double number;
     private String string;
     private Boolean bool;
     private Prozedur prozedur;
 
-    public datenTypen(double number){
+    public DatenTypen(double number){
         this.number = number;
     }
 
-    public datenTypen(String string){
+    public DatenTypen(String string){
         this.string = string;
     }
 
-    public datenTypen(Boolean bool){
+    public DatenTypen(Boolean bool){
         this.bool = bool;
     }
 
-    public datenTypen(Prozedur prozedur){
+    public DatenTypen(Prozedur prozedur){
         this.prozedur = prozedur;
     }
 
-    public datenTypen() {
+    public DatenTypen() {
 
     }
 
@@ -51,6 +51,20 @@ public class datenTypen {
             return prozedur;
         throw new RuntimeException("Is not a de.taniya.schemeinterpreter.prozedur.Prozedur!");
     }
+
+    public boolean isNumber(){
+        return this.number != null;
+    }
+
+    public boolean isString(){
+        return this.string != null;
+    }
+
+    public boolean isBoolean(){
+        return this.bool != null;
+    }
+
+
 
     @Override
     public String toString() {

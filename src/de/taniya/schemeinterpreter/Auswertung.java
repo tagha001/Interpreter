@@ -2,24 +2,54 @@ package de.taniya.schemeinterpreter;
 
 public class Auswertung {
 
-    public static datenTypen auswertung(Knotten knotten, varStore varStore){
+    public static DatenTypen auswertung(Knotten knotten, VarStore varStore){
         if (knotten.getToken().tokentyp== Token.Tokentyp.number){
             return knotten.getToken().var;
         }
-        else if(knotten.getToken().tokentyp== Token.Tokentyp.variable){
+        else if(knotten.getToken().tokentyp== Token.Tokentyp.variable ||
+                knotten.getToken().tokentyp == Token.Tokentyp.keyWord){
             return varStore.findVar(knotten.getToken().var.getString());
         }
 
-        switch (knotten.getKind().get(0).getToken().tokentyp){
+        /*switch (knotten.getKind().get(0).getToken().tokentyp){
+            case variable:
             case keyWord:
-                datenTypen temp = varStore.findVar(knotten.getKind().get(0).getToken().var.getString());
+                DatenTypen temp = varStore.findVar(knotten.getKind().get(0).getToken().var.getString());
                 if (temp != null){
                     return temp.getProzedur().execute(knotten, varStore);
                 }
                 break;
 
             case gruppe:
-               return auswertung(knotten.getKind().get(0), varStore);
+                temp = auswertung(knotten.getKind().get(0), varStore);
+                if (temp != null){
+                    return temp.getProzedur().execute(knotten, varStore);
+                }
+            break;
+
+            case root:
+                DatenTypen datenTypen = new DatenTypen();
+                for (int i = 0; i < knotten.getKind().size(); i++) {
+                    datenTypen = auswertung(knotten.getKind().get(i), varStore);
+                }
+                return datenTypen;
+        }*/
+
+
+        switch (knotten.getToken().tokentyp){
+            case gruppe:
+                DatenTypen temp = auswertung(knotten.getKind().get(0), varStore);
+                if (temp != null){
+                    return temp.getProzedur().execute(knotten, varStore);
+                }
+                break;
+
+            case root:
+                DatenTypen datenTypen = new DatenTypen();
+                for (int i = 0; i < knotten.getKind().size(); i++) {
+                    datenTypen = auswertung(knotten.getKind().get(i), varStore);
+                }
+                return datenTypen;
         }
         return null;
     }
