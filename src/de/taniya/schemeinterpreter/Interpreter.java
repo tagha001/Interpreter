@@ -31,9 +31,11 @@ public class Interpreter {
     public static void main(String args[]){
         tokendef test = new tokendef();
         //List list = test.load("(let ((a (+ 5 6))) (* a a))");
-        List list = test.load("(round 3.6)");
+        //List list = test.load("(round 3.6)");
         //List list = test.load("(define (func x y) (* x y))");
         //List list = test.load("((lambda (x) (* x x)) 5)");
+        //List list = test.load("(if #f 11 8)");
+        List list = test.load("(cond (#f 11)(#f 8))");
         Knotten knotten = tokendef.gruppierung(list,0, list.size());
         //repl();
 
@@ -48,6 +50,8 @@ public class Interpreter {
         varStore.addVar("let", new DatenTypen(new prozedurLet(varStore)));
         varStore.addVar("lambda", new DatenTypen(new prozedurLambda(varStore)));
         varStore.addVar("round", new DatenTypen(new prozedurRound(varStore)));
+        varStore.addVar("if", new DatenTypen(new prozedurIf(varStore)));
+        varStore.addVar("cond", new DatenTypen(new prozedurCond(varStore)));
         System.out.println(Auswertung.auswertung(knotten, varStore));
 
     }

@@ -67,6 +67,15 @@ public class tokendef {
                             typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("round"));
                             i += 4;
                         }
+                        else if (input.substring(i).startsWith("if")){
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("if"));
+                            i++;
+                        }
+
+                        else if (input.substring(i).startsWith("cond")){
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("cond"));
+                            i += 3;
+                        }
 
                         else {
                             String var = "";

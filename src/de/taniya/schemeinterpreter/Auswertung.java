@@ -10,6 +10,9 @@ public class Auswertung {
                 knotten.getToken().tokentyp == Token.Tokentyp.keyWord){
             return varStore.findVar(knotten.getToken().var.getString());
         }
+        else if (knotten.getToken().tokentyp == Token.Tokentyp.bool){
+            return knotten.getToken().var;
+        }
 
         /*switch (knotten.getKind().get(0).getToken().tokentyp){
             case variable:
