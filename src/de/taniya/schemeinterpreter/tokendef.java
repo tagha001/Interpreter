@@ -76,6 +76,30 @@ public class tokendef {
                             typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("cond"));
                             i += 3;
                         }
+                        else if (input.substring(i).startsWith("cons")){
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("cons"));
+                            i += 3;
+                        }
+
+                        else if (input.substring(i).startsWith("car")){
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("car"));
+                            i += 2;
+                        }
+
+                        else if (input.substring(i).startsWith("cdr")){
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("cdr"));
+                            i += 2;
+                        }
+
+                        else if (input.substring(i).startsWith("'()")){
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("'()"));
+                            i += 2;
+                        }
+
+                        else if (input.substring(i).startsWith("list")){
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("list"));
+                            i += 3;
+                        }
 
                         else {
                             String var = "";

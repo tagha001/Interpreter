@@ -7,6 +7,7 @@ public class DatenTypen {
     private String string;
     private Boolean bool;
     private Prozedur prozedur;
+    private Tuple<DatenTypen, DatenTypen> tuple;
 
     public DatenTypen(double number){
         this.number = number;
@@ -24,6 +25,7 @@ public class DatenTypen {
         this.prozedur = prozedur;
     }
 
+    public DatenTypen(Tuple<DatenTypen, DatenTypen> tuple){ this.tuple = tuple; }
 
     public DatenTypen() {
 
@@ -53,6 +55,12 @@ public class DatenTypen {
         throw new RuntimeException("Is not a de.taniya.schemeinterpreter.prozedur.Prozedur!");
     }
 
+    public Tuple<DatenTypen, DatenTypen> getTuple(){
+        if (tuple != null)
+            return tuple;
+        throw new RuntimeException("Is not a Tuple!");
+    }
+
     public boolean isNumber(){
         return this.number != null;
     }
@@ -80,6 +88,9 @@ public class DatenTypen {
         }
         if (this.prozedur != null) {
             return "prozedur";
+        }
+        if (this.tuple != null){
+            return this.tuple.toString();
         }
         return "no data stored";
     }

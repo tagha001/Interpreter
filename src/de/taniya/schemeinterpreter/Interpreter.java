@@ -35,7 +35,9 @@ public class Interpreter {
         //List list = test.load("(define (func x y) (* x y))");
         //List list = test.load("((lambda (x) (* x x)) 5)");
         //List list = test.load("(if #f 11 8)");
-        List list = test.load("(cond (#f 11)(#f 8))");
+        //List list = test.load("(cond (#f 11)(#f 8))");
+        //List list = test.load("(cdr (cons 1 2))");
+        List list = test.load("(list 1 2 3 4)");
         Knotten knotten = tokendef.gruppierung(list,0, list.size());
         //repl();
 
@@ -52,6 +54,11 @@ public class Interpreter {
         varStore.addVar("round", new DatenTypen(new prozedurRound(varStore)));
         varStore.addVar("if", new DatenTypen(new prozedurIf(varStore)));
         varStore.addVar("cond", new DatenTypen(new prozedurCond(varStore)));
+        varStore.addVar("cons", new DatenTypen(new prozedurCons(varStore)));
+        varStore.addVar("car", new DatenTypen(new prozedurCar(varStore)));
+        varStore.addVar("cdr", new DatenTypen(new prozedurCdr(varStore)));
+        varStore.addVar("list", new DatenTypen(new prozedurList(varStore)));
+        varStore.addVar("'()", new DatenTypen());
         System.out.println(Auswertung.auswertung(knotten, varStore));
 
     }
