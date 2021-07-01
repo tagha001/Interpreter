@@ -30,6 +30,29 @@ public class tokendef {
                 case '/':
                     typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("/"));
                     break;
+                case '<':
+                    if (input.charAt(i+1) == '='){
+                        typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("<="));
+                        i++;
+                    }
+                    else {
+                        typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("<"));
+                    }
+                    break;
+                case '>':
+                    if (input.charAt(i+1) == '='){
+                        typ = new Token(Token.Tokentyp.keyWord, new DatenTypen(">="));
+                        i++;
+                    }
+                    else {
+                        typ = new Token(Token.Tokentyp.keyWord, new DatenTypen(">"));
+                    }
+                    break;
+                case '=':
+                    typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("="));
+                    break;
+
+
 
                 case '"':
                     int stringEnd = input.indexOf('"', i+1);
@@ -100,6 +123,12 @@ public class tokendef {
                             typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("list"));
                             i += 3;
                         }
+
+                        else if (input.substring(i).startsWith("length")){
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("length"));
+                            i += 5;
+                        }
+
 
                         else {
                             String var = "";

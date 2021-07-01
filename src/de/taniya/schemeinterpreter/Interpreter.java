@@ -37,7 +37,10 @@ public class Interpreter {
         //List list = test.load("(if #f 11 8)");
         //List list = test.load("(cond (#f 11)(#f 8))");
         //List list = test.load("(cdr (cons 1 2))");
-        List list = test.load("(list 1 2 3 4)");
+        //List list = test.load("(list 1 2 3 4)");
+        //List list = test.load("(< 1 2 4 4)");
+        List list = test.load("(>= 3 2 3 1)");
+        //List list = test.load("(length (list 1 2 3 4))");
         Knotten knotten = tokendef.gruppierung(list,0, list.size());
         //repl();
 
@@ -58,7 +61,13 @@ public class Interpreter {
         varStore.addVar("car", new DatenTypen(new prozedurCar(varStore)));
         varStore.addVar("cdr", new DatenTypen(new prozedurCdr(varStore)));
         varStore.addVar("list", new DatenTypen(new prozedurList(varStore)));
+        varStore.addVar("length", new DatenTypen(new prozedurLength(varStore)));
         varStore.addVar("'()", new DatenTypen());
+        varStore.addVar("<", new DatenTypen(new prozedurKleiner(varStore)));
+        varStore.addVar(">", new DatenTypen(new prozedurGroßer(varStore)));
+        varStore.addVar("=", new DatenTypen(new prozedurGleich(varStore)));
+        varStore.addVar("<=", new DatenTypen(new prozedurKleinGleich(varStore)));
+        varStore.addVar(">=", new DatenTypen(new prozedurGroßGleich(varStore)));
         System.out.println(Auswertung.auswertung(knotten, varStore));
 
     }
