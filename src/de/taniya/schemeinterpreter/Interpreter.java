@@ -39,8 +39,9 @@ public class Interpreter {
         //List list = test.load("(cdr (cons 1 2))");
         //List list = test.load("(list 1 2 3 4)");
         //List list = test.load("(< 1 2 4 4)");
-        List list = test.load("(>= 3 2 3 1)");
+        //List list = test.load("(>= 3 2 3 1)");
         //List list = test.load("(length (list 1 2 3 4))");
+        List list = test.load("(null? (list 1 2 3 4))");
         Knotten knotten = tokendef.gruppierung(list,0, list.size());
         //repl();
 
@@ -62,6 +63,7 @@ public class Interpreter {
         varStore.addVar("cdr", new DatenTypen(new prozedurCdr(varStore)));
         varStore.addVar("list", new DatenTypen(new prozedurList(varStore)));
         varStore.addVar("length", new DatenTypen(new prozedurLength(varStore)));
+        varStore.addVar("null?", new DatenTypen(new prozedurNull(varStore)));
         varStore.addVar("'()", new DatenTypen());
         varStore.addVar("<", new DatenTypen(new prozedurKleiner(varStore)));
         varStore.addVar(">", new DatenTypen(new prozedurGroßer(varStore)));

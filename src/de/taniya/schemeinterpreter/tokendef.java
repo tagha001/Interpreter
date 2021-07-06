@@ -114,11 +114,6 @@ public class tokendef {
                             i += 2;
                         }
 
-                        else if (input.substring(i).startsWith("'()")){
-                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("'()"));
-                            i += 2;
-                        }
-
                         else if (input.substring(i).startsWith("list")){
                             typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("list"));
                             i += 3;
@@ -127,6 +122,11 @@ public class tokendef {
                         else if (input.substring(i).startsWith("length")){
                             typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("length"));
                             i += 5;
+                        }
+
+                        else if (input.substring(i).startsWith("null?")){
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("null?"));
+                            i += 4;
                         }
 
 
@@ -139,7 +139,12 @@ public class tokendef {
                             i--;
                             typ = new Token(Token.Tokentyp.variable, new DatenTypen(var));
                         }
-                    } else if ('0' <= input.charAt(i) && input.charAt(i) <= '9') {
+                    }
+                    else if (input.substring(i).startsWith("'()")){
+                        typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("'()"));
+                        i += 2;
+                    }
+                    else if ('0' <= input.charAt(i) && input.charAt(i) <= '9') {
                         double num = 0;
                         while ('0' <= input.charAt(i) && input.charAt(i) <= '9') {
                             num *= 10;

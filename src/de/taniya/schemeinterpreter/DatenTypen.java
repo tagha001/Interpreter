@@ -73,6 +73,11 @@ public class DatenTypen {
         return this.bool != null;
     }
 
+    public boolean isTuple() { return  this.tuple != null; }
+
+    public boolean isProzedur() { return this.prozedur != null; }
+
+    public boolean isEmpty() { return !isString() && !isNumber() && !isBoolean() && !isTuple() && !isProzedur(); }
 
 
     @Override
