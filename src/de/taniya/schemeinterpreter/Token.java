@@ -13,7 +13,7 @@ public class Token {
         root,
     }
 
-    Tokentyp tokentyp;
+    public Tokentyp tokentyp;
     public DatenTypen var;
 
     public Token(Tokentyp tokentyp){

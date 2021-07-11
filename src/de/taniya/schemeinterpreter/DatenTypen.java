@@ -80,6 +80,48 @@ public class DatenTypen {
     public boolean isEmpty() { return !isString() && !isNumber() && !isBoolean() && !isTuple() && !isProzedur(); }
 
 
+    public void clear() {
+        number = null;
+        string = null;
+        bool = null;
+        tuple = null;
+        prozedur = null;
+    }
+
+    public void set(DatenTypen datenTypen){
+        if (datenTypen.isEmpty()) { clear();}
+        else if (datenTypen.isNumber()){ setNumber(datenTypen.getNumber());}
+        else if (datenTypen.isString()){ setString(datenTypen.getString()); }
+        else if (datenTypen.isBoolean()){ setBool(datenTypen.getBool());}
+        else if (datenTypen.isTuple()){ setTuple(datenTypen.getTuple());}
+        else if (datenTypen.isProzedur()){ setProzedur(datenTypen.getProzedur());}
+    }
+
+    public void setNumber(double number){
+        clear();
+        this.number = number;
+    }
+
+    public void setString(String string){
+        clear();
+        this.string = string;
+    }
+
+    public void setBool(Boolean bool) {
+        clear();
+        this.bool = bool;
+    }
+
+    public void setTuple(Tuple<DatenTypen, DatenTypen> tuple) {
+        clear();
+        this.tuple = tuple;
+    }
+
+    public void setProzedur(Prozedur prozedur) {
+        clear();
+        this.prozedur = prozedur;
+    }
+
     @Override
     public String toString() {
         if (this.number != null) {

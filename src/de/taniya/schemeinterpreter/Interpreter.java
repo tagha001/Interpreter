@@ -41,7 +41,8 @@ public class Interpreter {
         //List list = test.load("(< 1 2 4 4)");
         //List list = test.load("(>= 3 2 3 1)");
         //List list = test.load("(length (list 1 2 3 4))");
-        List list = test.load("(null? (list 1 2 3 4))");
+        //List list = test.load("(null? (list 1 2 3 4))");
+        List list = test.load("(define x 10) (set! x 20) x ");
         Knotten knotten = tokendef.gruppierung(list,0, list.size());
         //repl();
 
@@ -70,6 +71,7 @@ public class Interpreter {
         varStore.addVar("=", new DatenTypen(new prozedurGleich(varStore)));
         varStore.addVar("<=", new DatenTypen(new prozedurKleinGleich(varStore)));
         varStore.addVar(">=", new DatenTypen(new prozedurGroßGleich(varStore)));
+        varStore.addVar("set!", new DatenTypen(new prozedurSet(varStore)));
         System.out.println(Auswertung.auswertung(knotten, varStore));
 
     }

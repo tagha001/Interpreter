@@ -129,6 +129,11 @@ public class tokendef {
                             i += 4;
                         }
 
+                        else if (input.substring(i).startsWith("set!")){
+                            typ = new Token(Token.Tokentyp.keyWord, new DatenTypen("set!"));
+                            i += 3;
+                        }
+
 
                         else {
                             String var = "";
