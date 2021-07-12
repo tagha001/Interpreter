@@ -134,6 +134,11 @@ public class tokendef {
                             i += 3;
                         }
 
+                        else if (input.substring(i).startsWith("quote")){
+                            typ =  new Token(Token.Tokentyp.keyWord, new DatenTypen("quote"));
+                            i += 4;
+                        }
+
 
                         else {
                             String var = "";

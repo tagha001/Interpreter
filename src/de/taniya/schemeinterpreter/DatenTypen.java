@@ -137,8 +137,25 @@ public class DatenTypen {
             return "prozedur";
         }
         if (this.tuple != null){
-            return this.tuple.toString();
+            DatenTypen erst = this;
+            String result = "(";
+            while (true){
+                if (erst.isTuple()){
+                    result += erst.getTuple().x;
+                    result += " ";
+                    erst = erst.getTuple().y;
+                }
+                else {
+                    if(!erst.isEmpty()){
+                        result += ". ";
+                    }
+                    result += erst;
+                    break;
+                }
+            }
+            result += ")";
+            return result;
         }
-        return "no data stored";
+        return "";
     }
 }
