@@ -14,7 +14,7 @@ public class prozedurGleich extends Prozedur{
     public DatenTypen executeRumpf(List<DatenTypen> parameter) {
         for (int i=0; i < (parameter.size()-1); i++){
             if ((parameter.get(i).getNumber() < parameter.get(i+1).getNumber()) ||
-                    (parameter.get(i).getNumber() > parameter.get(i).getNumber())){
+                    (parameter.get(i).getNumber() > parameter.get(i+1).getNumber())){
                 return new DatenTypen(false);
             }
         }

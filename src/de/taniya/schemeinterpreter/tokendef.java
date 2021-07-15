@@ -142,7 +142,7 @@ public class tokendef {
 
                         else {
                             String var = "";
-                            while ('a' <= input.charAt(i) && input.charAt(i) <= 'z') {
+                            while ('a' <= input.charAt(i) && input.charAt(i) <= 'z' || input.charAt(i) == '-') {
                                 var = var + input.charAt(i);
                                 i++;
                             }

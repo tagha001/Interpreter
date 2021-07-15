@@ -28,6 +28,12 @@ public class schemeProzedur extends Prozedur {
                     letVar.addKind(new Knotten(new Token(Token.Tokentyp.number, parameter.get(i))));
                 }else if (parameter.get(i).isString()){
                     letVar.addKind(new Knotten(new Token(Token.Tokentyp.string, parameter.get(i))));
+                }else if (parameter.get(i).isTuple()){
+                    letVar.addKind(new Knotten(new Token(Token.Tokentyp.tuple, parameter.get(i))));
+                }else if (parameter.get(i).isProzedur()){
+                    letVar.addKind(new Knotten(new Token(Token.Tokentyp.prozedur, parameter.get(i))));
+                }else {
+                    letVar.addKind(new Knotten(new Token(Token.Tokentyp.tuple, parameter.get(i))));
                 }
 
                 letVariablen.addKind(letVar);

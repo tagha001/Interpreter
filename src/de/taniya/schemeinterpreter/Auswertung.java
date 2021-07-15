@@ -6,11 +6,20 @@ public class Auswertung {
         if (knotten.getToken().tokentyp== Token.Tokentyp.number){
             return knotten.getToken().var;
         }
-        else if(knotten.getToken().tokentyp== Token.Tokentyp.variable ||
+        else if(knotten.getToken().tokentyp == Token.Tokentyp.variable ||
                 knotten.getToken().tokentyp == Token.Tokentyp.keyWord){
             return varStore.findVar(knotten.getToken().var.getString());
         }
         else if (knotten.getToken().tokentyp == Token.Tokentyp.bool){
+            return knotten.getToken().var;
+        }
+        else if (knotten.getToken().tokentyp == Token.Tokentyp.string){
+            return knotten.getToken().var;
+        }
+        else if (knotten.getToken().tokentyp == Token.Tokentyp.tuple){
+            return knotten.getToken().var;
+        }
+        else if (knotten.getToken().tokentyp == Token.Tokentyp.prozedur){
             return knotten.getToken().var;
         }
 

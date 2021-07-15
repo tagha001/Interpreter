@@ -11,6 +11,8 @@ public class Token {
         string,
         bool,
         root,
+        tuple,
+        prozedur,
     }
 
     public Tokentyp tokentyp;
